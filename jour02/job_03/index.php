@@ -12,13 +12,16 @@
             }
 
             elseif ($i >= 25 && $i <= 50) {
+                if ($i == 42) 
+                echo "LaPlateforme_<br />";
+
+             } else {
                 echo "<u>$i</u><br />";
             }
 
-            if ($i == 42) 
-            { echo "LaPlateforme_<br />"; }
 
-            else
+
+         } else {
 
             { echo "$i<br />";}
 }
