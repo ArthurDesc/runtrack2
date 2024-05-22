@@ -5,16 +5,18 @@
     <title>Document</title>
 </head>
 <body>
+
+
 <?php
 // Largeur et hauteur du rectangle
-$largeur = 30;
+$largeur = 40;
 $hauteur = 10;
 
 // Dessiner le rectangle
 for ($i = 0; $i < $hauteur; $i++) {
     for ($j = 0; $j < $largeur; $j++) {
         if ($i == 0 || $i == $hauteur - 1 || $j == 0 || $j == $largeur - 1) {
-            echo "* ";
+            echo "*";
         } else {
             echo "&nbsp;&nbsp;";
         }
@@ -22,16 +24,6 @@ for ($i = 0; $i < $hauteur; $i++) {
     echo "<br />";
 }
 ?>
-
-
-
-
- 
-
-
-
-
-
 
 
 </body>
