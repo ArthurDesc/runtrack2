@@ -15,7 +15,10 @@
             if (in_array($str[$i], $voyelles)) {
                 echo $str[$i];
             }
-        } 
+        }
+        
+        
+        
 
     ?>
 
