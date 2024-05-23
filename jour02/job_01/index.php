@@ -6,17 +6,17 @@
 </head>
 <body>
 <?php
-    for ($i = 0; $i <= 1337; $i++) {
-                if ($i == 26 || $i == 37 || $i == 88 || $i == 1111 || $i == 3233) {
+    for ($list = 0; $list <= 1337; $list++) {
+                if ($list == 26 || $list == 37 || $list == 88 || $list == 1111 || $list == 3233) {
                 continue;
                 }
 
-                if ($i == 42) 
+                if ($list == 42) 
                 { echo "<b><u>42</u></b><br>"; }
 
                 else
 
-                { echo "$i<br />";}
+                { echo "$list<br />";}
 }
 ?>
 
