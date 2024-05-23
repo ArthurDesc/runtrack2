@@ -1,5 +1,5 @@
 <?php
-$hauteur = 5;
+$hauteur = 20;
 
 for ($i = 1; $i <= $hauteur; $i++) {
     for ($j=$i; $j<$hauteur; $j++) {
