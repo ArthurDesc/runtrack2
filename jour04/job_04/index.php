@@ -99,7 +99,7 @@
 
     <?php
     if ($_SERVER ['REQUEST_METHOD'] == 'POST' && !empty($_POST)) {
-        echo "<h1>Tableau de vos données :</h1> <br />";
+        echo "<h1>Tableau de vos données :</h1><br />";
         echo "<table border=1>";
         echo "<tr><th>Arguments</th><th>Valeurs</th></tr>";
 
@@ -109,7 +109,6 @@
 
         echo "</table>";
     }
-
     ?>
     
 </body>
