@@ -21,7 +21,7 @@
 
     if ($_SERVER ['REQUEST_METHOD'] == 'GET' && isset($nombre)) {
         foreach ($_GET as $key => $value) {
-    if ($_ == 2 % 0) {
+    if ($_GET == 2 % 0) {
     echo "Nombre pair";
 
     } else { 
