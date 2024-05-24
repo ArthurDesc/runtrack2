@@ -19,19 +19,16 @@
     </form>
 
     <?php
-    // Vérifier si des données GET ont été soumises
     if ($_SERVER['REQUEST_METHOD'] == 'GET' && !empty($_GET)) {
-        echo "<table border='1'>";
+        echo "<table border=2>";
         echo "<tr><th>Arguments</th><th>Valeurs</th></tr>";
-        // Parcourir chaque élément de $_GET et afficher dans le tableau
-        foreach ($_GET as $argument => $valeur) {
-            echo "<tr><td>$argument</td><td>$valeur</td></tr>";
+
+        foreach ($_GET as $key => $value) {
+        echo "<tr><td>$key</td><td>$value</td></tr>";
         }
-        echo "</table>";
-    } else {
-        // Afficher un message si aucun argument GET n'a été soumis
-        echo "<p>Aucun argument GET n'a été soumis.</p>";
     }
+    echo "</table>";
+
     ?>
 </body>
 </html>
