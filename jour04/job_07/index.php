@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="index.php" method="get">
+        <label for="largeur">Largeur :</label>
+        <input type="text" name="largeur">
+
+
+        <label for="hauteur">Hauteur :</label>
+        <input type="text" name="hauteur">
+
+        <input type="submit" value="Envoyer"/>
+    </form>
+
+    <?php
+
+    $largeur = 5;
+    $hauteur = 10;
+
+    ?>
+    
+</body>
+</html>
