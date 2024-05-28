@@ -5,24 +5,42 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="test.php">test</a>
+    <a href="copie.php">copie</a>
+<form method="post" action="index.php">
+    <label for="largeur">largeur</label> : <input type="text" name="largeur" id="largeur">
+    <label for="hauteur"> hauteur</label> : <input type="text" name="hauteur" id="hauteur">
+    <input type="submit" value="envoyer">
+</form>
 
-    <form action="index.php" method="get">
-        <label for="largeur">Largeur :</label>
-        <input type="text" name="largeur">
-
-
-        <label for="hauteur">Hauteur :</label>
-        <input type="text" name="hauteur">
-
-        <input type="submit" value="Envoyer"/>
-    </form>
 
     <?php
+ if (isset($_POST['largeur']) && isset($_POST['hauteur'])) {
+    $largeur = intval($_POST['largeur']);
+    $hauteur = intval($_POST['hauteur']);
 
-    $largeur = 5;
-    $hauteur = 10;
+    if ($largeur > 0 && $hauteur > 0) {
+        
+        for ($i = 1; $i <= $hauteur; $i++) {
+            echo str_repeat('&nbsp;&nbsp;', $hauteur - $i);
+            echo '/';
+            if ($i > 1) {
+                echo str_repeat('_', 2 * ($i - 1) );
+            }
+            echo '\\<br>';
+        }
 
+        for ($i = 1; $i <= $hauteur; $i++) {
+            echo '|';
+            echo str_repeat('&nbsp;&nbsp;', $largeur -2);
+            echo '|<br>';
+        }
+        echo '|';
+        echo str_repeat('_', $largeur - 2);
+        echo '|<br>';
+
+    } 
+} 
     ?>
-    
 </body>
 </html>

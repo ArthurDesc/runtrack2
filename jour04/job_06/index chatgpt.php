@@ -9,7 +9,7 @@
 
 <form method="get">
     <label for="nombre">Nombre : </label>
-    <input type="text" id="nombre" name="nombre" required>
+    <input type="number" id="nombre" name="nombre" required>
     <input type="submit" value="Envoyer">
 </form>
 

@@ -7,6 +7,7 @@
 </head>
 <body>
 
+<h1>Entre une valeur :</h1>
 <form method="get">
     <label for="nombre">Nombre : </label>
     <input type="number" id="nombre" name="nombre" required>
@@ -15,20 +16,26 @@
 
 
 <?php
+$length =0;
+
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['nombre'])) {
     $input = $_GET['nombre'];
 
-    // Récupérer le dernier chiffre du nombre
-    $dernierChiffre = abs($input % 10); // Utilisation de abs() pour gérer les nombres négatifs
 
-    // Vérifier si le dernier chiffre est pair ou impair
-    if ($dernierChiffre % 2 == 0) {
-        echo "Ce Nombre est pair";
-    } else {
-        echo "Ce Nombre est impair";
-    }
+    for ($length=0;isset($input[$length]);$length++) { 
+        if ($longueur > 0 ) {
+            $dernier_caractere = $input [$length - 1];
+            echo $length; 
 }
+}
+}
+
 ?>
+
+
+
+    
 </body>
 </html> 
+
 

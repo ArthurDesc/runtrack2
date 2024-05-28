@@ -1,0 +1,10 @@
+body {
+    background-color: lightcoral;
+    font-family: 'Times New Roman', Times, serif;
+}
+form {
+    border: 3px double #000;
+    padding: 20px;
+    background-color: lightgray;
+}
+

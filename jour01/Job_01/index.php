@@ -1,35 +1,13 @@
-<?php
+<?php 
 
-    $str = 'LaPlateforme';
+$str = "LaPlateforme";
 
-    
-    $str2 = 'Vive';
-    
-    $str3 = '!';
+$str2 = "Vive";
 
-    $phrase = $str2. ' '. $str. $str3; 
-    
-        echo $phrase . "<br>"; 
+$str3 = "!";
 
+$str4 = $str2 . " " . $str . " " . $str3;
 
-
-
-    $val = 6;
-        echo $val . "<br>";
-        echo $val+4 . "<br>";
-    ?>
-
-<?php
-
-    $myBool = true;
-        echo $myBool;
-
-    $myBool = false;
-        echo $myBool;
-
-    
-
-
-
+echo $str4;
 ?>
 
