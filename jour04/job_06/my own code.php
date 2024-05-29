@@ -8,6 +8,7 @@
 <body>
 
 <h1>Entre une valeur :</h1>
+
 <form method="get">
     <label for="nombre">Nombre : </label>
     <input type="number" id="nombre" name="nombre" required>
@@ -26,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['nombre'])) {
         if ($longueur > 0 ) {
             $dernier_caractere = $input [$length - 1];
             echo $length; 
-}
-}
+        }
+    }
 }
 
 ?>

@@ -16,10 +16,10 @@
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['nombre'])) {
-    $input = $_GET['nombre'];
+    
 
     // Récupérer le dernier chiffre du nombre
-    $dernierChiffre = abs($input % 10); // Utilisation de abs() pour gérer les nombres négatifs
+    $dernierChiffre = abs($_GET['nombre'] % 10); // Utilisation de abs() pour gérer les nombres négatifs
 
     // Vérifier si le dernier chiffre est pair ou impair
     if ($dernierChiffre % 2 == 0) {
