@@ -1,6 +1,6 @@
 <?php
-function hello() {
-    echo "Hello LaPlateforme";
+function getHello() {
+        return "Hello LaPlateforme";    
 }
 
 ?>
@@ -13,7 +13,7 @@ function hello() {
 </head>
 <body>
 
-<?php hello(); ?>
+<?php echo getHello(); ?>
     
     
 </body>
