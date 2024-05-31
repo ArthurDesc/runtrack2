@@ -1,20 +1,20 @@
 <?php
 session_start(); // Démarre la session
-
 // Initialisation de la variable de session "prenom" si elle n'est pas déjà définie
-if (!isset($_SESSION["prenom"])) {
-    $_SESSION["prenom"] = "";
+if (!isset($_SESSION["prenoms"])) {
+    $_SESSION["prenoms"] = array();
 }
 
 // Traitement des requêtes POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Réinitialisation du prénom si le bouton "Reset" est cliqué
     if (isset($_POST["reset"])) {
-        $_SESSION["prenom"] = "";
-    } 
+        $_SESSION["prenoms"] = array();
+    }
+
     // Enregistrement du prénom dans la session si le champ "prenom" est soumis
-    elseif (isset($_POST["prenom"])) {
-        $_SESSION["prenom"] = $_POST["prenom"];
+    elseif (isset($_POST["prenom"]) && !empty($_POST["prenom"])) {
+        $_SESSION["prenoms"][] = $_POST["prenom"];
     }
 }
 ?>
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 <form action="index.php" method="post">
-    <input type="text" name="prenom" value="<?php echo htmlspecialchars($_SESSION['prenom']); ?>">
+    <input type="text" name="prenom" >
     <input type="submit" name="submit" value="Envoyer">
     <br />
 
@@ -40,8 +40,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php
 // Affichage du prénom si il est défini dans la session
-if ($_SESSION["prenom"] !== "") {
-    echo "<ul><li>" . htmlspecialchars($_SESSION["prenom"]) . "</li></ul>";
+if (!empty($_SESSION["prenoms"])) {
+    echo "<ul>";
+    foreach ($_SESSION["prenoms"] as $prenom) {
+        echo "<li>". htmlspecialchars($prenom) ."</li>";
+    }
+    echo "</ul>";
 }
 ?>
 
