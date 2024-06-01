@@ -18,7 +18,7 @@ if(isset($_POST['reset'])){
 }
 
 //if session isn't empty iterate on sessions "prenoms" and echo it
-if(!empty($_SESSION['prenoms'])){
+if(!empty($_SESSION['prenoms'])) {
   foreach($_SESSION['prenoms'] as $name){
     echo "<ul><li>$name</li></ul>" . "<br/>";
   }
@@ -28,10 +28,34 @@ if(!empty($_SESSION['prenoms'])){
 ?>
 
 
-<form action="index.php" method="post">
-  <label for="fname">Username</label>
-  <input type="text" id="fname" name="fname"><br><br>
-  <input type="submit" name="add" value="Add">
-  <label for="fname">Reset</label>
-  <input type="submit" name="reset" value="Reset">
-</form>
+
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+
+  <style>
+    body {
+      margin: 2vw;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+  </style>
+  
+  <form action="index.php" method="post">
+    <label for="fname">Username</label>
+    <input type="text" id="fname" name="fname"><br><br>
+    <input type="submit" name="add" value="Add">
+    <label for="fname">Reset</label>
+    <input type="submit" name="reset" value="Reset">
+  </form>
+  
+</body>
+</html>
