@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <p>Bonjour <?php echo htmlspecialchars($_COOKIE['prenom']); ?> !</p>
         <form action="index.php" method="post">
             <input type="submit" name="deco" value="Déconnexion">
-        </form>
+        </form> 
     </div>
 <?php else: ?>
     <form action="index.php" method="post">
