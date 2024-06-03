@@ -7,7 +7,6 @@
 <body>
     <?php
         $str = "Dans l'espace, personne ne vous entend crier.";
-        $count = 0;
 
 
         for ($count=0; isset($str[$count]); $count++);
