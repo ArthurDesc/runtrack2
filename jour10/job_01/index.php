@@ -39,8 +39,8 @@ if (!$request) {
             <tr>
                 <?php
                 // Afficher les noms des colonnes
-                $fieldinfo_array = mysqli_fetch_fields($request);
-                foreach ($fieldinfo_array as $fieldinfo) {
+                $arraySQL = mysqli_fetch_fields($request);
+                foreach ($arraySQL as $fieldinfo) {
                     echo "<th>{$fieldinfo->name}</th>";
                 }
                 ?>
@@ -49,9 +49,9 @@ if (!$request) {
         <tbody>
             <?php
             // Afficher les lignes de données
-            while ($row = mysqli_fetch_assoc($request)) {
+            while ($data = mysqli_fetch_assoc($request)) {
                 echo "<tr>";
-                foreach ($row as $value) {
+                foreach ($data as $value) {
                     echo "<td>" . htmlspecialchars($value) . "</td>";
                 }
                 echo "</tr>";

@@ -1,15 +1,25 @@
 <?php
+// Connexion à la base de données
 $mysqli = mysqli_connect("localhost", "root", "", "jour09");
 
+// Vérifier la connexion
 if (!$mysqli) {
     die("Échec de la connexion : " . mysqli_connect_error());
 }
 
-$request = mysqli_query($mysqli, "SELECT nom, capacite FROM salles");
+// Requête SQL pour calculer la superficie totale des étages
+$sql = "SELECT SUM(superficie) AS superficie_totale FROM etage";
 
-if (!$request) {
+$result = mysqli_query($mysqli, $sql);
+
+// Vérifier si la requête a réussi
+if (!$result) {
     die("Échec de la requête : " . mysqli_error($mysqli));
 }
+
+// Récupérer le résultat de la requête
+$row = mysqli_fetch_assoc($result);
+$superficie_totale = $row['superficie_totale'];
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +27,7 @@ if (!$request) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des étudiants</title>
+    <title>Superficie totale des étages</title>
     <style>
         table {
             width: 100%;
@@ -37,21 +47,13 @@ if (!$request) {
     <table>
         <thead>
             <tr>
-                <th>Nom</th>
-                <th>Capacité</th>
+                <th>Superficie totale des étages</th>
             </tr>
         </thead>
         <tbody>
-            <?php
-            // Afficher les lignes de données
-            while ($data = mysqli_fetch_assoc($request)) {
-                echo "<tr>";
-                foreach ($data as $value) {
-                    echo "<td>" . htmlspecialchars($value) . "</td>";
-                }
-                echo "</tr>";
-            }
-            ?>
+            <tr>
+                <td><?php echo $superficie_totale; ?></td>
+            </tr>
         </tbody>
     </table>
 </body>

@@ -5,7 +5,7 @@ if (!$mysqli) {
     die("Échec de la connexion : " . mysqli_connect_error());
 }
 
-$request = mysqli_query($mysqli, "SELECT nom, capacite FROM salles");
+$request = mysqli_query($mysqli, "SELECT prenom, nom, naissance FROM etudiants WHERE sexe = 'Femme'");
 
 if (!$request) {
     die("Échec de la requête : " . mysqli_error($mysqli));
@@ -37,8 +37,9 @@ if (!$request) {
     <table>
         <thead>
             <tr>
+                <th>Prénom</th>
                 <th>Nom</th>
-                <th>Capacité</th>
+                <th>Naissance</th>
             </tr>
         </thead>
         <tbody>
