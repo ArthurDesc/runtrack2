@@ -1,16 +1,15 @@
 <?php
-$sqlConnect = mysqli_connect("localhost", "root", "", "jour09");
+$mysqli = mysqli_connect("localhost", "root", "", "jour09");
 
-if (!$sqlConnect) {
+if (!$mysqli) {
     die("Échec de la connexion : " . mysqli_connect_error());
 }
 
-$request = mysqli_query($sqlConnect, "SELECT 'nom', 'capacite' FROM salle");
+$request = mysqli_query($mysqli, "SELECT * FROM etudiants");
 
 if (!$request) {
-    die("Échec de la requête : " . mysqli_error($sqlConnect));
+    die("Échec de la requête : " . mysqli_error($mysqli));
 }
-// ICI ON CONNECTE NOTRE SQL ET ON AFFICHE UN MESSAGE EN CAS DE DECO 
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +18,20 @@ if (!$request) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des étudiants</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
     <table>
@@ -51,5 +64,5 @@ if (!$request) {
 
 <?php
 // Fermer la connexion
-mysqli_close($sqlConnect);
+mysqli_close($mysqli);
 ?>
