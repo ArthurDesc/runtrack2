@@ -7,19 +7,18 @@ if (!$mysqli) {
     die("Échec de la connexion : " . mysqli_connect_error());
 }
 
-// Requête SQL pour calculer la superficie totale des étages
-$sql = "SELECT * FROM salles ORDER BY capacite DESC";
 
-$result = mysqli_query($mysqli, $sql);
+$request = mysqli_query($mysqli, "SELECT * FROM salles ORDER BY capacite DESC");
+// DONNE LA REQUETE A SUIVRE
 
 // Vérifier si la requête a réussi
-if (!$result) {
+if (!$request) {
     die("Échec de la requête : " . mysqli_error($mysqli));
 }
 
 // Récupérer le résultat de la requête
-$row = mysqli_fetch_assoc($result);
-$superficie_totale = $row['superficie_totale'];
+$row = mysqli_fetch_assoc($request);
+$capacite = $row['capacite'];
 ?>
 
 <!DOCTYPE html>
@@ -47,13 +46,16 @@ $superficie_totale = $row['superficie_totale'];
     <table>
         <thead>
             <tr>
-                <th></th>
+                <th>Salles</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><?php echo $superficie_totale; ?></td>
-            </tr>
+            <?php
+            // Tant qu'il y a des lignes à afficher
+            while ($row = mysqli_fetch_assoc($request)) {
+                echo "<tr><td>" . $row['capacite'] . "</td></tr>";
+            }
+            ?>
         </tbody>
     </table>
 </body>
