@@ -1,6 +1,5 @@
 <?php
 $message = '';
-
 // Vérifier si la méthode de requête est POST
 if ($_SERVER["REQUEST_METHOD"] == "POST" ) {
     $login = $_POST['login'];
