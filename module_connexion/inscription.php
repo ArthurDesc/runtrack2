@@ -1,5 +1,4 @@
 <?php
-session_start();
 $message = '';
 
 // Vérifier si la méthode de requête est POST
@@ -16,8 +15,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ) {
     } else {
         // SECURISE LE MOT DE PASSE
         $hashed_password = password_hash($mot_de_passe, PASSWORD_DEFAULT);
-
-
 
 
         // Connexion à la base de données
@@ -52,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ) {
     <title>Inscription</title>
 </head>
 <body>
+    <a href="./index.php">Accueil</a>
     <h1>Inscription</h1>
     <?php if ($message): ?>
         <p><?php echo htmlspecialchars($message); ?></p>
@@ -69,5 +67,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" ) {
         <input type="password" id="confirm_mot_de_passe" name="confirm_mot_de_passe" required><br /><br />
         <button type="submit">Inscription</button>
     </form>
+
 </body>
 </html>

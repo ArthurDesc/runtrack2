@@ -13,20 +13,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Préparer et exécuter la requête SQL pour sélectionner l'utilisateur
-    $stmt = $mysqli->prepare("SELECT id, prenom, password FROM utilisateurs WHERE login = ?");
-    $stmt->bind_param("s", $login);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $request = $mysqli->prepare("SELECT id, prenom, password FROM utilisateurs WHERE login = ?"); 
+    $request->bind_param("s", $login); // ATTRIBUT LE TYPE STRING A LA VARIABLE LOGIN
+    $request->execute(); 
+    $result = $request->get_result(); // ON CREER UNE VARIABLE POUR LUI DONNER LE RESULT DE NOTRE REQUETE
 
     // Vérifier si l'utilisateur existe
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
+    if ($result->num_rows > 0) { 
+        $user_data = $result->fetch_assoc();
 
         // Vérifier le mot de passe
-        if (password_verify($password, $row['password'])) {
+        if (password_verify($password, $user_data['password'])) {
             // Mot de passe correct, démarrer la session utilisateur
-            $_SESSION['user_id'] = $row['id'];
-            $_SESSION['user_name'] = $row['prenom'];
+            $_SESSION['user_id'] = $user_data['id'];
+            $_SESSION['user_name'] = $user_data['prenom'];
             
             // Rediriger vers une page protégée ou une page d'accueil
             header("Location: profil.php");
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Fermer la requête et la connexion
-    $stmt->close();
+    $request->close();
     mysqli_close($mysqli);
 }
 ?>
@@ -51,6 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Connexion</title>
 </head>
 <body>
+    <a href="./index.php">Accueil</a>
     <h1>Connexion</h1>
     <?php if ($message): ?>
         <p><?php echo htmlspecialchars($message); ?></p>
@@ -62,5 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="password" id="password" name="password" required><br><br>
         <button type="submit">Connexion</button>
     </form>
+
+
 </body>
 </html>

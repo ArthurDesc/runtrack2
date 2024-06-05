@@ -7,6 +7,10 @@
 <body>
 
 <h1>Bienvenue sur mon site !</h1>
+
+<a href="./connexion.php">Se connecter</a>
+<br />
+<a href="./inscription.php">S'inscire</a>
     
 </body>
 </html>

@@ -17,5 +17,7 @@
         <input type="password" id="mot_de_passe" name="mot_de_passe"><br><br>
         <button type="submit">Mettre à jour</button>
     </form>
+
+    <a href="./index.php">Accueil</a>
 </body>
 </html>
