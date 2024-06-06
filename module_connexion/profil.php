@@ -1,80 +1,85 @@
-    <?php
-    session_start();
-    $message = 'Connectez vous pour accéder à votre profil ';
+<?php
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $login = $_POST['login'];
-        $prenom = $_POST['prenom'];
-        $nom = $_POST['nom'];
-        $mot_de_passe = $_POST['mot_de_passe'];
+session_start();
+$message = 'Ici vous pouvez modifier vos informations personnelles';
 
+// Vérifiez si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+    header("Location: connexion.php");
+    exit;
+}
 
-        // Connexion à la base de données
-        $mysqli = mysqli_connect("localhost", "root", "", "moduleconnexion");
-        if (!$mysqli) {
-            die("Échec de la connexion : " . mysqli_connect_error());
-        }
+$user_id = $_SESSION['user_id'];
 
-        // Préparer et exécuter la requête SQL pour sélectionner l'utilisateur
-        $request = $mysqli->prepare("SELECT id, prenom, nom, FROM utilisateurs WHERE login = ?"); 
-        $request->bind_param("s", $login); // ATTRIBUT LE TYPE STRING A LA VARIABLE LOGIN
-        $request->execute(); 
-        $result = $request->get_result(); // ON CREER UNE VARIABLE POUR LUI DONNER LE RESULT DE NOTRE REQUETE
+// Connexion à la base de données
+$mysqli = new mysqli("localhost", "root", "", "moduleconnexion");
+if ($mysqli->connect_error) {
+    die("Échec de la connexion : " . $mysqli->connect_error);
+}
 
-        // Vérifier si l'utilisateur existe
-        if ($result->num_rows > 0) { 
-            $user_data = $result->fetch_assoc();
+// Récupérer les informations actuelles de l'utilisateur
+$request = $mysqli->prepare("SELECT login, prenom, nom FROM utilisateurs WHERE id = ?");
+$request->bind_param("i", $user_id);
+$request->execute();
+$result = $request->get_result();
+$user_data = $result->fetch_assoc();
+$request->close();
 
-            // Vérifier le mot de passe entre celui fourni et celui haché dans la base de donné
-            if (password_verify($password, $user_data['password'])) {
-                // Mot de passe correct, démarrer la session utilisateur
-                $_SESSION['user_id'] = $user_data['id'];
-                $_SESSION['user_name'] = $user_data['prenom'];
-                
-                // Rediriger vers une page protégée ou une page d'accueil
-                header("Location: profil.php");
-                exit;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $login = $_POST["login"];
+    $nom = $_POST["nom"];
+    $prenom = $_POST["prenom"];
+    $mot_de_passe = $_POST["mot_de_passe"];
 
-            } elseif ($login == "admin" && $password == "admin") {
-                    header("Location: admin.php");
-            } else {
-                $message = "Mot de passe incorrect.";
-            }
-        } else {
-            $message = "Aucun utilisateur trouvé avec ce login.";
-        }
-
-        // Fermer la requête et la connexion
-        $request->close();
-        mysqli_close($mysqli);
+    // Mettre à jour les informations de l'utilisateur
+    if (!empty($mot_de_passe)) {
+        $hashed_password = password_hash($mot_de_passe, PASSWORD_DEFAULT);
+        $update_request = $mysqli->prepare("UPDATE utilisateurs SET login = ?, prenom = ?, nom = ?, password = ? WHERE id = ?");
+        $update_request->bind_param("ssssi", $login, $prenom, $nom, $hashed_password, $user_id);
+    } else {
+        $update_request = $mysqli->prepare("UPDATE utilisateurs SET login = ?, prenom = ?, nom = ? WHERE id = ?");
+        $update_request->bind_param("sssi", $login, $prenom, $nom, $user_id);
     }
-    ?>
 
-    <!DOCTYPE html>
-    <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <title>Connexion</title>
-    </head>
-    <body>
-        <a href="./index.php">Accueil</a>
-        <h1>Modifier mon profil</h1>
-        <form method="post" action="profil.php">
-            <label for="login">Login:</label>
-            <input type="text" id="login" name="login" value="<?php echo htmlspecialchars($login); ?>" readonly><br><br>
-            <label for="prenom">Prénom:</label>
-            <input type="text" id="prenom" name="prenom" value="<?php echo htmlspecialchars($prenom); ?>" required><br><br>
-            <label for="nom">Nom:</label>
-            <input type="text" id="nom" name="nom" value="<?php echo htmlspecialchars($nom); ?>" required><br><br>
-            <label for="mot_de_passe">Nouveau mot de passe (laissez vide pour ne pas changer):</label>
-            <input type="password" id="mot_de_passe" name="mot_de_passe"><br><br>
-            <button type="submit">Mettre à jour</button>
-        </form>
-        
-        <?php if ($message): 
-            echo "<p>" . htmlspecialchars($message) . "</p>"; 
-            endif;
-        ?>
+    if ($update_request->execute()) {
+        // Mettre à jour les informations de session
+        $_SESSION['user_firstname'] = $prenom;
+        $_SESSION['user_lastname'] = $nom;
+        $_SESSION['login'] = $login;
+        header("Location: " . $_SERVER['PHP_SELF']);
+        echo "Vos informations ont bien été mis à jour";
+    } else {
+        $message = "Erreur lors de la mise à jour des informations.";
+    }
+    $update_request->close();
+}
 
-    </body>
-    </html> 
+$mysqli->close();
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier mon profil</title>
+</head>
+<body>
+    <a href="./index.php">Accueil</a>
+    <h1>Modifier mon profil</h1>
+    <form method="post" action="profil.php">
+        <label for="login">Login:</label>
+        <input type="text" id="login" name="login" value="<?php echo htmlspecialchars($user_data['login']); ?>" required><br><br>
+        <label for="prenom">Prénom:</label>
+        <input type="text" id="prenom" name="prenom" value="<?php echo htmlspecialchars($user_data['prenom']); ?>" required><br><br>
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" value="<?php echo htmlspecialchars($user_data['nom']); ?>" required><br><br>
+        <label for="mot_de_passe">Nouveau mot de passe (laissez vide pour ne pas changer):</label>
+        <input type="password" id="mot_de_passe" name="mot_de_passe"><br><br>
+        <button type="submit">Mettre à jour</button>
+    </form>
+    
+    <?php if ($message): ?>
+        <p><?php echo htmlspecialchars($message); ?></p>
+    <?php endif; ?>
+</body>
+</html>

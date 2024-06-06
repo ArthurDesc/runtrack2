@@ -27,6 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Mot de passe correct, démarrer la session utilisateur
             $_SESSION['user_id'] = $user_data['id'];
             $_SESSION['user_name'] = $user_data['prenom'];
+            $_SESSION['login'] = $user_data['login'];
+            $_SESSION[''] = $user_data[''];
+            $_SESSION[''] = $user_data[''];
             
             // Rediriger vers une page protégée ou une page d'accueil
             header("Location: profil.php");
