@@ -7,7 +7,6 @@ if (!$mysqli) {
     die("Échec de la connexion : " . mysqli_connect_error());
 }
 
-
 $request = mysqli_query($mysqli, "SELECT * FROM salles ORDER BY capacite ASC");
 // DONNE LA REQUETE A SUIVRE
 

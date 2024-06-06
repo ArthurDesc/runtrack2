@@ -7,8 +7,8 @@ if (!$mysqli) {
     die("Échec de la connexion : " . mysqli_connect_error());
 }
 
-
-$request = mysqli_query($mysqli, "SELECT capacite FROM salles  ");
+$request = mysqli_query($mysqli, "SELECT AVG(capacite) AS valeur_moyenne FROM salles;");
+$valeur_moyenne = 0;
 // DONNE LA REQUETE A SUIVRE
 
 // Vérifier si la requête a réussi
