@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 $message = 'Ici vous pouvez modifier vos informations personnelles';
 
@@ -33,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Mettre à jour les informations de l'utilisateur
     if (!empty($mot_de_passe)) {
-        $hashed_password = password_hash($mot_de_passe, PASSWORD_DEFAULT);
+        $hashed_password = password_hash($mot_de_passe, PASSWORD_DEFAULT); // SECURISE LE MOT DE PASSE
         $update_request = $mysqli->prepare("UPDATE utilisateurs SET login = ?, prenom = ?, nom = ?, password = ? WHERE id = ?");
         $update_request->bind_param("ssssi", $login, $prenom, $nom, $hashed_password, $user_id);
     } else {
@@ -66,6 +65,7 @@ $mysqli->close();
 <body>
     <a href="./index.php">Accueil</a>
     <h1>Modifier mon profil</h1>
+
     <form method="post" action="profil.php">
         <label for="login">Login:</label>
         <input type="text" id="login" name="login" value="<?php echo htmlspecialchars($user_data['login']); ?>" required><br><br>
