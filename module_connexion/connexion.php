@@ -24,11 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Vérifier le mot de passe
         if (password_verify($password, $user_data['password'])) {
-            // Mot de passe correct, démarrer la session utilisateur
+            // SI LE MDP EST CORRECT ALORS SAUVEGARDE LES IDENTIFIANTS EN MODE SESSION
             $_SESSION['user_id'] = $user_data['id'];
             $_SESSION['user_name'] = $user_data['prenom'];
             
-            // Rediriger vers une page protégée ou une page d'accueil
+            // Redirige vers la page profil
             header("Location: profil.php");
             exit;
 

@@ -88,6 +88,14 @@ $mysqli->close();
             </div>
             <button type="submit" class="btn btn-primary btn-block">Mettre à jour</button>
         </form>
+        <?php
+        if ($_SESSION['user_id'] == 1) {
+        echo "<a href='./admin.php'>";
+        echo "ADMIN";
+        echo "</a>";
+        }
+         ?>
+
         
         <?php if ($message): ?>
             <div class="alert alert-info mt-4" role="alert">

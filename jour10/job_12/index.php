@@ -7,8 +7,12 @@ if (!$mysqli) {
     die("Échec de la connexion : " . mysqli_connect_error());
 }
 
-$request = mysqli_query($mysqli, "SELECT AVG(capacite) AS valeur_moyenne FROM salles;");
+$request = mysqli_query($mysqli, "SELECT prenom, nom, naissance FROM etudiants WHERE naissance BETWEEN '1999-12-31' AND '2016-09-08';");
 // DONNE LA REQUETE A SUIVRE
+
+// ENREGISTREMENT DE LA REQUETE DANS UNE VARIABLE
+$row = mysqli_fetch_assoc($request);
+
 
 // Vérifier si la requête a réussi
 if (!$request) {
@@ -16,8 +20,6 @@ if (!$request) {
 }
 
 // Récupérer le résultat de la requête
-$row = mysqli_fetch_assoc($request);
-$valeur_moyenne = $row['valeur_moyenne'];
 ?>
 
 <!DOCTYPE html>
@@ -45,14 +47,24 @@ $valeur_moyenne = $row['valeur_moyenne'];
 
 <body>
     <table>
+
+        <h1>Liste des étudiants :</h1>
         <thead>
             <tr>
-                <th>Salles</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Naissance</th>
             </tr>
         </thead>
         <tbody>
             <?php
-                echo "<tr><td>" . $valeur_moyenne . "</td></tr>";
+            while ($row = mysqli_fetch_assoc($request)) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row['nom']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['prenom']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['naissance']) . "</td>";
+                echo "</tr>";
+            }
             ?>
         </tbody>
     </table>
