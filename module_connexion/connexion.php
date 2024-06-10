@@ -35,10 +35,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } elseif ($user_data['id'] == 1) {
             header("Location: admin.php");
         } else {
-            $message = "Mot de passe incorrect.";
+            $message = "Mot de passe ou identifiant incorrect.";
         }
     } else {
-        $message = "Aucun utilisateur trouvé avec ce login.";
+        $message = "Mot de passe ou identifiant incorrect.";
     }
 
     // Fermer la requête et la connexion
