@@ -1,4 +1,6 @@
 <?php
+$title = "Mon profil";
+
 session_start();
 $message = 'Ici vous pouvez modifier vos informations personnelles';
 
@@ -62,12 +64,16 @@ $mysqli->close();
 
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Modifier mon profil</title>
-    <!-- Intégration de Bootstrap CSS -->
-</head>
+
+<?php include('./includes/_head.php') ?>
+
 <body>
+
+<?php include('./includes/_header.php')?>
+
+<main>
+
+
     <div class="container mt-5">
         <a href="./index.php" class="btn btn-secondary mb-4">Accueil</a>
         <h1 class="text-center">Modifier mon profil</h1>
@@ -86,6 +92,7 @@ $mysqli->close();
         </form>
 
         <a href="./commentaires.php">Laisser un commentaire</a>        
+        <br />
         <a href="./livre-or.php">Voir les commentaires</a>        
         <?php if ($message): ?>
             <div class="alert alert-info mt-4" role="alert">
@@ -93,6 +100,9 @@ $mysqli->close();
             </div>
         <?php endif; ?>
     </div>
+</main>
+
+<?php include('./includes/_footer.php') ?>
 
 
 </body>

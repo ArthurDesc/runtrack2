@@ -39,12 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription</title>
-</head>
+<?php include('./includes/_head.php') ?>
+
 <body>
+
+<?php include('./includes/_header.php')?>
+
     <form action="inscription.php" method="post">
         <label for="login">Nom d'utilisateur</label>
         <br />
@@ -63,5 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php if (!empty($error_message)) : ?>
         <p><?php echo $error_message; ?></p>
     <?php endif; ?>
+
+    <?php include('./includes/_footer.php') ?>
+
 </body>
 </html>

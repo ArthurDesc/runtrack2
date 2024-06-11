@@ -58,9 +58,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html lang="en">
 
+<?php include('./includes/_head.php') ?>
+
 <body>
 
 <div>
+
+<?php include('./includes/_header.php')?>
 
     <form class="login-form" action="connexion.php" method="post">
             <h1>Se connecter</h1>
@@ -82,6 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </div>
 
 
+<?php include('./includes/_footer.php') ?>
     
 </body>
 </html>

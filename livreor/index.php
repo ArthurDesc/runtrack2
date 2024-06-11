@@ -1,14 +1,26 @@
+<?php
+$title = "Mon profil";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<?php include('./includes/_head.php') ?>
+
 <body>
 
-<a href="./inscription.php">Inscription</a>
-<a href="./connexion.php">Connexion</a>
+<?php include('./includes/_header.php')?>
+
+
+<main>
+
     
+    <a class="registerButton" href="./inscription.php">Inscription</a>
+    <br />
+    <a class="loginButton" href="./connexion.php">Connexion</a>
+
+</main>
+<?php include('./includes/_footer.php') ?>
+
 </body>
 </html>

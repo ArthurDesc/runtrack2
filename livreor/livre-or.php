@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des commentaires</title>
-    <!-- Lien vers le fichier CSS de Bootstrap 5 depuis jsDelivr CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+    
+<?php include('./includes/_head.php') ?>
+
 <body>
+
+<?php include('./includes/_header.php')?>
+
     <main>
         <div class="container mt-5">
             <!-- Lien vers la page d'accueil -->
@@ -50,6 +49,9 @@
             <a href="./profil.php" class="btn btn-primary mt-3">Page de profil</a>
         </div>
     </main>
+
+    <?php include('./includes/_footer.php') ?>
+
 
 
     <!-- Lien vers le fichier JS de Bootstrap 5 depuis jsDelivr CDN -->

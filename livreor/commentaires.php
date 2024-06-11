@@ -50,12 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page de Commentaires</title>
-</head>
+
+<?php include('./includes/_head.php') ?>
+
 <body>
+
+<?php include('./includes/_header.php')?>
+
     <h1>Page de Commentaires</h1>
     
     <form action="commentaires.php" method="POST">
@@ -64,6 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 
     <a href="./livre-or.php">Voir les commentaires</a>
+
+    <?php include('./includes/_footer.php') ?>
 
 </body>
 </html>
