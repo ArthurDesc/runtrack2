@@ -15,6 +15,7 @@ $mysqli = new mysqli("localhost", "root", "", "livreor");
 if ($mysqli->connect_error) {
     die("Échec de la connexion : " . $mysqli->connect_error);
 }
+ 
 
 // Récupérer les informations actuelles de l'utilisateur
 $request = $mysqli->prepare("SELECT login FROM utilisateurs WHERE id = ?");
@@ -46,6 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $message = "Erreur lors de la mise à jour des informations.";
     }
+    
+    if (isset($_POST['logout'])) {
+        unset($_SESSION['user_id']);
+        header("location: ./connexion.php");
+        exit();
+    }
+
     $update_request->close();
 }
 
@@ -74,9 +82,11 @@ $mysqli->close();
                 <input type="password" id="password" name="password" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary btn-block">Mettre à jour</button>
+            <button type="submit" name="logout" class="btn btn-primary btn-block">Se déconnecter</button>
         </form>
 
         <a href="./commentaires.php">Laisser un commentaire</a>        
+        <a href="./livre-or.php">Voir les commentaires</a>        
         <?php if ($message): ?>
             <div class="alert alert-info mt-4" role="alert">
                 <?php echo htmlspecialchars($message); ?>

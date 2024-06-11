@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Récupérer le commentaire soumis depuis le formulaire
         $comment = htmlspecialchars($_POST['comment']); // Sécuriser le commentaire
 
-        // Établir une connexion à la base de données
+        // CONNEXION
         $mysqli = new mysqli('localhost', 'root', '', 'livreor');
 
         // Vérifier la connexion
@@ -62,5 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <textarea name="comment" rows="4" cols="50"></textarea><br>
         <input type="submit" value="Envoyer">
     </form>
+
+    <a href="./livre-or.php">Voir les commentaires</a>
+
 </body>
 </html>
