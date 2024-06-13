@@ -72,8 +72,6 @@ $mysqli->close();
 <?php include('./includes/_header.php')?>
 
 <main>
-
-
     <div class="container mt-5">
         <a href="./index.php" class="btn btn-secondary mb-4">Accueil</a>
         <h1 class="text-center">Modifier mon profil</h1>
@@ -88,12 +86,12 @@ $mysqli->close();
                 <input type="password" id="password" name="password" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary btn-block">Mettre à jour</button>
-            <button type="submit" name="logout" class="btn btn-primary btn-block">Se déconnecter</button>
+            <button type="submit" name="logout" class="btn btn-secondary btn-block">Se déconnecter</button>
         </form>
 
-        <a href="./commentaires.php">Laisser un commentaire</a>        
+        <a href="./commentaires.php" class="btn btn-link mt-3">Laisser un commentaire</a>
         <br />
-        <a href="./livre-or.php">Voir les commentaires</a>        
+        <a href="./livre-or.php" class="btn btn-link mt-3">Voir les commentaires</a>
         <?php if ($message): ?>
             <div class="alert alert-info mt-4" role="alert">
                 <?php echo htmlspecialchars($message); ?>
