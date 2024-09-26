@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Expression régulière pour valider l'adresse email
 
-        $mysqli = mysqli_connect('localhost', 'root', '', 'livreor');
+    $mysqli = mysqli_connect('localhost', 'root', '', 'livreor');
 
         if (!$mysqli) {
             die("Could not connect: " . mysqli_connect_error());

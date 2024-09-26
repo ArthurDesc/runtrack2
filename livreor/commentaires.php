@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $comment = htmlspecialchars($_POST['comment']); // Sécuriser le commentaire
 
         // CONNEXION
-        $mysqli = new mysqli('localhost', 'root', '', 'livreor');
+        $mysqli = mysqli_connect('localhost', 'root', '', 'livreor');
 
         // Vérifier la connexion
         if ($mysqli->connect_error) {

@@ -13,12 +13,9 @@ $title = "Mon profil";
 
 
 <main>
-
-    
     <a class="registerButton" href="./inscription.php">Inscription</a>
     <br />
     <a class="loginButton" href="./connexion.php">Connexion</a>
-
 </main>
 <?php include('./includes/_footer.php') ?>
 

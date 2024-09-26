@@ -13,7 +13,7 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 
 // Connexion à la base de données
-$mysqli = new mysqli("localhost", "root", "", "livreor");
+$mysqli = mysqli_connect('localhost', 'root', '', 'livreor');
 if ($mysqli->connect_error) {
     die("Échec de la connexion : " . $mysqli->connect_error);
 }

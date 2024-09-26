@@ -17,7 +17,7 @@
             <!-- PHP pour afficher la liste des commentaires -->
             <?php
                 // Connexion à la base de données
-                $mysqli = mysqli_connect("localhost", "root", "", "livreor");
+                $mysqli = mysqli_connect('localhost', 'root', '', 'livreor');
                 if (!$mysqli) {
                     die("Échec de la connexion : " . mysqli_connect_error());
                 }
